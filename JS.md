@@ -251,8 +251,8 @@ while (current && current !== body) {
 ### GET SECOND CHILD
 
 ```sh
-el.children[1]```
-
+el.children[1]
+```
 
 ### LOADER SESSION
 
