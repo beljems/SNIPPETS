@@ -21,6 +21,25 @@ Svg <%= svgSprite('/assets/svg/sprite.svg', '#sprite-sample-a') %>
 wrap.style.top = `${wrap.getBoundingClientRect().top}px`;
 ```
 
+### COUNTING FOREACH and starts at a specific number
+
+```sh
+annualEventMonthRow.forEach(function(e, i) {
+  let max = 12;
+  let start = 4 + i;
+  let txt = '';
+
+  if(start <= max) {
+    text = start + '月';
+  } else {
+    text = (start-max) + '月';
+  }
+
+  e.innerHTML = text;
+
+});
+```
+
 ### IMPORTING SVG SPRITE
 
 ```sh
@@ -325,18 +344,17 @@ Note: Must separate to export default function …
 
 ```sh
 $section.each( (i, e) => {
-      let $elem = $(e);
-      console.log($elem[0]);
+  let $elem = $(e);
+  console.log($elem[0]);
 
-      new ScrollMagic.Scene({
-        triggerElement: e,
-        triggerHook: CONST.TRIGGER_HOOK
-      })
-      .reverse(true)
-      .setClassToggle($elem[0],CONST.ACTIVE_CLASS)
-      .addTo(controller);
-    } );
-
+  new ScrollMagic.Scene({
+    triggerElement: e,
+    triggerHook: CONST.TRIGGER_HOOK
+  })
+  .reverse(true)
+  .setClassToggle($elem[0],CONST.ACTIVE_CLASS)
+  .addTo(controller);
+} );
 
 or
 
