@@ -1,181 +1,452 @@
-# Dillinger
+# JAVASCRIPT
 
-[![N|Solid](https://cldup.com/dTxpPi9lDf.thumb.png)](https://nodesource.com/products/nsolid)
+<!--[![N|Solid](https://cldup.com/dTxpPi9lDf.thumb.png)](https://nodesource.com/products/nsolid)-->
 
-[![Build Status](https://travis-ci.org/joemccann/dillinger.svg?branch=master)](https://travis-ci.org/joemccann/dillinger)
+<!--[![Build Status](https://travis-ci.org/joemccann/dillinger.svg?branch=master)](https://travis-ci.org/joemccann/dillinger)-->
 
-Dillinger is a cloud-enabled, mobile-ready, offline-storage, AngularJS powered HTML5 Markdown editor.
+### POLYFILL BUILDER
+[https://cdn.polyfill.io/v3/url-builder/](https://cdn.polyfill.io/v3/url-builder/)
 
-  - Type some Markdown on the left
-  - See HTML in the right
-  - Magic
+### JS Rotate Vertical or Horizontal
+[https://developer.mozilla.org/en-US/docs/Web/API/Window/orientationchange_event](https://developer.mozilla.org/en-US/docs/Web/API/Window/orientationchange_event)
 
-# New Features!
-
-  - Import a HTML file and watch it magically convert to Markdown
-  - Drag and drop images (requires your Dropbox account be linked)
-
-
-You can also:
-  - Import and save files from GitHub, Dropbox, Google Drive and One Drive
-  - Drag and drop markdown and HTML files into Dillinger
-  - Export documents as Markdown, HTML and PDF
-
-Markdown is a lightweight markup language based on the formatting conventions that people naturally use in email.  As [John Gruber] writes on the [Markdown site][df1]
-
-> The overriding design goal for Markdown's
-> formatting syntax is to make it as readable
-> as possible. The idea is that a
-> Markdown-formatted document should be
-> publishable as-is, as plain text, without
-> looking like it's been marked up with tags
-> or formatting instructions.
-
-This text you see here is *actually* written in Markdown! To get a feel for Markdown's syntax, type some text into the left window and watch the results in the right.
-
-### Tech
-
-Dillinger uses a number of open source projects to work properly:
-
-* [AngularJS] - HTML enhanced for web apps!
-* [Ace Editor] - awesome web-based text editor
-* [markdown-it] - Markdown parser done right. Fast and easy to extend.
-* [Twitter Bootstrap] - great UI boilerplate for modern web apps
-* [node.js] - evented I/O for the backend
-* [Express] - fast node.js network app framework [@tjholowaychuk]
-* [Gulp] - the streaming build system
-* [Breakdance](https://breakdance.github.io/breakdance/) - HTML to Markdown converter
-* [jQuery] - duh
-
-And of course Dillinger itself is open source with a [public repository][dill]
- on GitHub.
-
-### Installation
-
-Dillinger requires [Node.js](https://nodejs.org/) v4+ to run.
-
-Install the dependencies and devDependencies and start the server.
-
+### LARAVEl MIX WEBPACK
 ```sh
-$ cd dillinger
-$ npm install -d
-$ node app
+Images: <%= mix('/assets/images/sample.gif') %>
+Svg <%= svgSprite('/assets/svg/sprite.svg', '#sprite-sample-a') %>
 ```
 
-For production environments...
-
+### GET BOUNDING RECT
 ```sh
-$ npm install --production
-$ NODE_ENV=production node app
+wrap.style.top = `${wrap.getBoundingClientRect().top}px`;
 ```
 
-### Plugins
-
-Dillinger is currently extended with the following plugins. Instructions on how to use them in your own application are linked below.
-
-| Plugin | README |
-| ------ | ------ |
-| Dropbox | [plugins/dropbox/README.md][PlDb] |
-| GitHub | [plugins/github/README.md][PlGh] |
-| Google Drive | [plugins/googledrive/README.md][PlGd] |
-| OneDrive | [plugins/onedrive/README.md][PlOd] |
-| Medium | [plugins/medium/README.md][PlMe] |
-| Google Analytics | [plugins/googleanalytics/README.md][PlGa] |
-
-
-### Development
-
-Want to contribute? Great!
-
-Dillinger uses Gulp + Webpack for fast developing.
-Make a change in your file and instantaneously see your updates!
-
-Open your favorite Terminal and run these commands.
-
-First Tab:
-```sh
-$ node app
-```
-
-Second Tab:
-```sh
-$ gulp watch
-```
-
-(optional) Third:
-```sh
-$ karma test
-```
-#### Building for source
-For production release:
-```sh
-$ gulp build --prod
-```
-Generating pre-built zip archives for distribution:
-```sh
-$ gulp build dist --prod
-```
-### Docker
-Dillinger is very easy to install and deploy in a Docker container.
-
-By default, the Docker will expose port 8080, so change this within the Dockerfile if necessary. When ready, simply use the Dockerfile to build the image.
+### IMPORTING SVG SPRITE
 
 ```sh
-cd dillinger
-docker build -t joemccann/dillinger:${package.json.version} .
+<script src="<?php echo resolve_asset_url( '/lib/svg4everybody.js' ); ?>"></script>
+<script>svg4everybody();</script>
 ```
-This will create the dillinger image and pull in the necessary dependencies. Be sure to swap out `${package.json.version}` with the actual version of Dillinger.
 
-Once done, run the Docker image and map the port to whatever you wish on your host. In this example, we simply map port 8000 of the host to port 8080 of the Docker (or whatever port was exposed in the Dockerfile):
+Root folder
+svg-sprite-config.json
+```sh
+{
+  "dest": "wp/wp-content/themes/seika-kindergarten/assets/svg",
+  "mode": {
+    "symbol": {
+      "dest": ".",
+      "sprite": "icons.svg"
+    }
+  }
+}
+```
+Icon.php on theme’s folder
 
 ```sh
-docker run -d -p 8000:8080 --restart="always" <youruser>/dillinger:${package.json.version}
+<svg role="img">
+  <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="<?php echo resolve_svg_url( 'icons.svg#src--seika-kindergarten--svg--'.$icon ); ?>"></use>
+</svg>
 ```
-
-Verify the deployment by navigating to your server address in your preferred browser.
+Package.json
 
 ```sh
-127.0.0.1:8000
+"start": "npm run build && npm run svgsprite && npm run serve",
+"svgsprite": "svg-sprite -C svg-sprite-config.json './src/seika-kindergarten/svg/*.svg'"
 ```
 
-#### Kubernetes + Google Cloud
 
-See [KUBERNETES.md](https://github.com/joemccann/dillinger/blob/master/KUBERNETES.md)
+### WRAP KEY ONLY FOR KEBAB CASE in EJS FORMAT
+
+```sh
+<%
+data1 = [{
+   key: '...',
+   camelCase: '...'
+}]
+data2 = [{
+   key: '...',
+   'kebab-case': '...'
+}]
+%>
+```
+
+### SCROLL X FIXED HEADER
+
+```sh
+header = document.querySelector('#js-header');
+
+let ticking = false;
+let lastScrollLeft = 0;
+window.addEventListener('scroll', function() {
+  let el = this;
+  if (!ticking) {
+      window.requestAnimationFrame(function() {
+          let documentScrollLeft = CONST.$document.scrollLeft();
+          if (lastScrollLeft != documentScrollLeft) {
+            lastScrollLeft = documentScrollLeft;
+
+            let scrollXValue = ((el.scrollX || el.pageXOffset));
+            header.style.left = `-${scrollXValue}px`;
+          }
+          ticking = false;
+      });
+    ticking = true;
+  }
+});
+
+```
+
+### MEDIA QUERY
+
+```sh
+let mediaQuery = window.matchMedia('(max-width: 767px)');
+
+headerNavController(mediaQuery); // create controller
+mediaQuery.addListener(headerNavController);
+
+function headerNavController({ matches }) {
+  if ( matches ) {
+    headerBurger.addEventListener('click', function(e) {
+      e.preventDefault()
+
+      header.classList.toggle(CONST.IS_FIXED)
+      burger.classList.toggle(CONST.IS_ACTIVE)
+      headerNav.classList.toggle(CONST.IS_ACTIVE)
+
+      if(headerNav.classList.contains(CONST.IS_ACTIVE)) {
+        scrollLock()
+      } else {
+        scrollAble()
+      }
+
+    });
+  } else {
+    header.classList.remove(CONST.IS_FIXED)
+    burger.classList.remove(CONST.IS_ACTIVE)
+    headerNav.classList.remove(CONST.IS_ACTIVE)
+
+    scrollAble();
+  }
+}
+
+```
 
 
-### Todos
+### WINDOW SCROLL TO CONTENT PURE JS
 
- - Write MORE Tests
- - Add Night Mode
+```sh
+window.addEventListener('load', (e, i) => {
+  let thisWindow = e.currentTarget;
+  const hash = location.hash;
+  const yCoordinate = document.querySelector(hash).getBoundingClientRect().top + window.pageYOffset;
 
-License
-----
+  if ( hash !== null) {
+    thisWindow.scrollTo({
+        top: yCoordinate,
+        behavior: 'smooth'
+    });
+  }
+});
+```
 
-MIT
+### GSAP
+Must install imports-loader for gsap
+
+```sh   
+require('imports-loader?define=>false!scrollmagic/scrollmagic/uncompressed/plugins/animation.gsap');
+```
+
+### IE ISSUES USE POLYFILL
+
+```sh
+<script src="https://cdn.polyfill.io/v2/polyfill.min.js"></script>
+
+'use strict';
+
+if (!NodeList.prototype.forEach) {
+  NodeList.prototype.forEach = Array.prototype.forEach;
+}
+```
+
+### SCROLL LOCK
+
+```sh
+import {$document, $window, ACTIVE_CLASS} from '../constants/';
+
+const wrap = document.querySelector('#js-wrap');
+
+let scrollTop = 0;
+export const ableScroll = () => {
+
+   wrap.classList.remove(ACTIVE_CLASS);
+   wrap.style.top = '';
+
+   document.documentElement.scrollTop = scrollTop;
+ }
+
+export const lockScroll = () => {
+  scrollTop = document.documentElement.scrollTop;
+
+  wrap.classList.add(ACTIVE_CLASS);
+  wrap.style.top = `-${scrollTop}px`;
+}
+
+export function scrollAble() {
+  ableScroll();
+}
+
+export function scrollLock() {
+  lockScroll();
+}
+```
+
+### TAB CONTENTS
+
+```sh
+export default function tabContent() {
+
+  const tabLinks = document.querySelectorAll('.js-tab-link'),
+        tabContents = document.querySelectorAll('.js-tab-content');
+
+  tabLinks.forEach((tabLink) => {
+    tabLink.addEventListener('click', (e) => {
+      e.preventDefault();
+
+      tabContents.forEach((el) => {
+        el.classList.remove(CONST.ACTIVE_CLASS);
+      });
+      tabLinks.forEach((el) => {
+        el.classList.remove(CONST.ACTIVE_CLASS);
+      });
+      tabLink.classList.add(CONST.ACTIVE_CLASS);
+
+      let target = tabLink.getAttribute('href');
+      target = document.querySelector(target);
+      target.classList.add(CONST.ACTIVE_CLASS);
+
+    });
+  });
+
+}
+```
+
+### GET PARENT THROUGH A FUNCTION
+
+```sh
+const body = document.querySelector('body')
+let current = e.target
+let outside = true
+
+while (current && current !== body) {
+  if (current.classList.contains('property-location-value')) {
+    outside = false
+    break
+  } else {
+    current = current.parentNode
+  }
+}
+```
+
+### GET SECOND CHILD
+
+```sh
+el.children[1]```
 
 
-**Free Software, Hell Yeah!**
+### LOADER SESSION
 
-[//]: # (These are reference links used in the body of this note and get stripped out when the markdown processor does its job. There is no need to format nicely because it shouldn't be seen. Thanks SO - http://stackoverflow.com/questions/4823468/store-comments-in-markdown-syntax)
+```sh
+export default function loaderSession() {
+  let loaderEl = document.querySelector('.js-loader');
+  let soundEl = document.querySelector('.js-sound');
+  if (!sessionStorage.isVisited) {
+  sessionStorage.isVisited = 'true'
+    loaderEl.style.display = "block";
+    soundEl.style.display = "flex";
+  } else {
+    loaderEl.style.display = "none";
+    soundEl.style.display = "none";
+  }
+}
+```
+
+### CALLING  EXPORTS in JS
+
+```sh
+export default function myFunction() {
+
+}
+
+// other PROFILE
+Usage: import myFunction from './file'
+
+export function myFunction2() {
+    ableScroll();
+}
+
+Usage: import { myFunction2, myFunction3} from './file'
 
 
-   [dill]: <https://github.com/joemccann/dillinger>
-   [git-repo-url]: <https://github.com/joemccann/dillinger.git>
-   [john gruber]: <http://daringfireball.net>
-   [df1]: <http://daringfireball.net/projects/markdown/>
-   [markdown-it]: <https://github.com/markdown-it/markdown-it>
-   [Ace Editor]: <http://ace.ajax.org>
-   [node.js]: <http://nodejs.org>
-   [Twitter Bootstrap]: <http://twitter.github.com/bootstrap/>
-   [jQuery]: <http://jquery.com>
-   [@tjholowaychuk]: <http://twitter.com/tjholowaychuk>
-   [express]: <http://expressjs.com>
-   [AngularJS]: <http://angularjs.org>
-   [Gulp]: <http://gulpjs.com>
+export const ableScroll = () => {
 
-   [PlDb]: <https://github.com/joemccann/dillinger/tree/master/plugins/dropbox/README.md>
-   [PlGh]: <https://github.com/joemccann/dillinger/tree/master/plugins/github/README.md>
-   [PlGd]: <https://github.com/joemccann/dillinger/tree/master/plugins/googledrive/README.md>
-   [PlOd]: <https://github.com/joemccann/dillinger/tree/master/plugins/onedrive/README.md>
-   [PlMe]: <https://github.com/joemccann/dillinger/tree/master/plugins/medium/README.md>
-   [PlGa]: <https://github.com/RahulHP/dillinger/blob/master/plugins/googleanalytics/README.md>
+   $wrap.removeClass(ACTIVE_CLASS);
+   $wrap.css({
+     'top' : ''
+   });
+   $headerSide.removeClass(ACTIVE_CLASS);
+
+   $document.scrollTop(scrollTop);
+ }
+export const lockScroll = () => {
+   scrollTop = $document.scrollTop();
+
+   $wrap.addClass(ACTIVE_CLASS);
+   $wrap.css({
+     'top' : `-${scrollTop}px`
+   });
+   $headerSide.addClass(ACTIVE_CLASS);
+
+}
+
+
+export function scrollAble() {
+    ableScroll();
+}
+
+export function scrollLock() {
+    lockScroll();
+}
+
+Note: Must separate to export default function …
+```
+
+### CALLING EACH in SCROLLMAGIC
+
+```sh
+$section.each( (i, e) => {
+      let $elem = $(e);
+      console.log($elem[0]);
+
+      new ScrollMagic.Scene({
+        triggerElement: e,
+        triggerHook: CONST.TRIGGER_HOOK
+      })
+      .reverse(true)
+      .setClassToggle($elem[0],CONST.ACTIVE_CLASS)
+      .addTo(controller);
+    } );
+
+
+or
+
+$animElem.each((i, e) => {
+  let $elem = $(e);
+
+  new ScrollMagic.Scene({
+    triggerElement: e,
+    triggerHook: 'onEnter',
+    offset: offset
+  })
+  .reverse(false)
+  .setClassToggle($elem[0],CONST.ACTIVE_CLASS)
+  .addTo(controller);
+});
+```
+
+### ELEMENT IN VIEWPORT
+
+```sh
+
+CONST.$window.on('scroll', function () {
+    let $thisWindow = $(this);
+
+    let windowScroll = $thisWindow.scrollTop(),
+        windowBottom = windowScroll + CONST.$window.innerHeight();
+
+    const $section = $('.section');
+
+    $section.each( function (i, e) {
+      let $this = $(this),
+          $elem = $(e);
+
+      let elemTop = $this.position().top,
+          elemBottom = elemTop + $this.outerHeight();
+
+      if( ( elemTop >= windowScroll ) && ( elemTop <= windowBottom ||
+        elemBottom >= windowBottom && elemTop <= windowScroll ) ) {
+
+        $elem.removeClass(CONST.ACTIVE_CLASS);
+        $this.addClass(CONST.ACTIVE_CLASS);
+
+      }
+});
+```
+
+### INTERSECTION OBSERVER
+
+```sh
+let observer = new IntersectionObserver(callback, { rootMargin: '0px 0px -100px 0px' });
+       document.querySelectorAll.forEach((section) => {
+         observer.observe(section)
+       })
+
+       function callback(entries) {
+         entries.forEach((entry) => {
+           if (entry.isIntersecting) {
+             entry.classList.add('is-active');
+           }
+           else {
+             entry.classList.remove('is-active');
+           }
+         })
+       }
+```
+Example
+
+```sh
+
+let observer = new IntersectionObserver(callback, { rootMargin: '0px 0px -100px 0px' });
+
+ const section = document.querySelectorAll('.js-section');
+
+ section.forEach((sec) => {
+   observer.observe(sec);
+ })
+
+ function callback(entries) {
+   entries.forEach((entry) => {
+     if (entry.isIntersecting) {
+       let caseAnimationHome = () => {
+
+         const elSlide = entry.target.querySelectorAll('.js-anim-slide');
+
+         elSlide.forEach( (el, i) => {
+           delay(i*CONST.DURATION).then(() => {
+             el.classList.add(CONST.IS_ACTIVE);
+
+             delay(4*CONST.DURATION).then(() => {
+                 const animMoney = entry.target.querySelector(`.js-anim-money`);
+                 animMoney.classList.add(CONST.IS_ACTIVE);
+
+                 delay(10*CONST.DURATION).then(() => {
+                   const elSlide2 = entry.target.querySelectorAll(`.js-anim-slide-2`);
+                   elSlide2.forEach( (el, i) => {
+                       delay(i*CONST.DURATION).then(() => {
+                         el.classList.add(CONST.IS_ACTIVE);
+                       });
+                   });
+                 });
+             });
+           });
+         });
+
+       }
+
+       if(window.location.pathname === '/'){
+         caseAnimationHome();
+       }
+     }
+   })
+ }
+```
