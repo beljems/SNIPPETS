@@ -172,9 +172,9 @@ window.addEventListener('load', (e, i) => {
 
 ### BUTTON CLICKED SCROLL TO CONTENT PURE JS
 
+```sh
 const button = document.querySelector('.js-scroll-button');
 
-```sh
 button.addEventListener('click', function(e, i) {
   e.preventDefault();
   const hash = e.currentTarget.getAttribute('href');
@@ -186,6 +186,24 @@ button.addEventListener('click', function(e, i) {
         behavior: 'smooth'
     });
   }
+});
+```
+
+FOREACH
+
+```sh
+const buttons = document.querySelectorAll('.js-scroll-button');
+buttons.forEach( button => {
+  button.addEventListener('click', e => {
+    e.preventDefault();
+    const hash = e.currentTarget.getAttribute('href');
+    const yCoordinate = document.querySelector(hash).getBoundingClientRect().top + window.pageYOffset;
+
+    window.scrollTo({
+        top: yCoordinate,
+        behavior: 'smooth'
+    });
+  });
 });
 ```
 
