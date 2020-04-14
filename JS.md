@@ -169,6 +169,26 @@ window.addEventListener('load', (e, i) => {
 });
 ```
 
+
+### BUTTON CLICKED SCROLL TO CONTENT PURE JS
+
+const button = document.querySelector('.js-scroll-button');
+
+```sh
+button.addEventListener('click', function(e, i) {
+  e.preventDefault();
+  const hash = e.currentTarget.getAttribute('href');
+  const yCoordinate = document.querySelector(hash).getBoundingClientRect().top + window.pageYOffset;
+
+  if ( hash !== null) {
+    window.scrollTo({
+        top: yCoordinate,
+        behavior: 'smooth'
+    });
+  }
+});
+```
+
 ### GSAP
 Must install imports-loader for gsap
 
