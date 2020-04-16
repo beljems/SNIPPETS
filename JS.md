@@ -27,25 +27,25 @@ wrap.style.top = `${wrap.getBoundingClientRect().top}px`;
 1. Using of img/svg sprite
 
 References
-[https://www.toptal.com/developers/css/sprite-generator/](https://www.toptal.com/developers/css/sprite-generator/)
-[http://www.spritecow.com/](http://www.spritecow.com/)
-[https://spritegen.website-performance.org/](https://spritegen.website-performance.org/)
-[https://css.spritegen.com/](https://css.spritegen.com/)
+https://www.toptal.com/developers/css/sprite-generator/
+http://www.spritecow.com/
+https://spritegen.website-performance.org/
+https://css.spritegen.com/
 
 encode to Base64
 
 2. Using of Lazyload
 
 References
-[https://github.com/tuupola/lazyload](https://github.com/tuupola/lazyload)
-[https://wordpress.org/plugins/search/lazy+load](https://wordpress.org/plugins/search/lazy+load)
+https://github.com/tuupola/lazyload
+https://wordpress.org/plugins/search/lazy+load
 
 
 3. font-display property
 
 4. Remove unnecesarry Script by WP
 Reference
-[https://www.denisbouquet.com/remove-wordpress-emoji-code/](https://www.denisbouquet.com/remove-wordpress-emoji-code/)
+https://www.denisbouquet.com/remove-wordpress-emoji-code/
 
 5. gzip compress with .htaccess
 
