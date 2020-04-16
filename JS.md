@@ -40,6 +40,38 @@ annualEventMonthRow.forEach(function(e, i) {
 });
 ```
 
+### LAZYLOAD
+
+```sh
+import 'intersection-observer';
+
+export default function Lazyload() {
+  let observer = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting && !e.target.classList.contains('loaded')) {
+        let el = e.target;
+
+        if (el.dataset.src && el.nodeName.toLowerCase() === 'img') {
+          el.setAttribute('src', el.dataset.src);
+        } else {
+          el.style.backgroundImage = el.dataset.src;
+        }
+
+        e.target.classList.add('loaded');
+      }
+    });
+  }, {
+      rootMargin: (window.innerWidth <= 767) ? `${window.innerHeight * 2}px 0px ${window.innerHeight * 2}px 0px` : '0px 0px 0px 0px'
+  });
+
+  const lazyload = document.querySelectorAll('.lazyload');
+  lazyload.forEach(img => {
+    observer.observe(img);
+  });
+}
+
+```
+
 ### IMPORTING SVG SPRITE
 
 ```sh
