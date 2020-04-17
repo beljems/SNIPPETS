@@ -138,10 +138,10 @@ export default function Lazyload() {
       if (e.isIntersecting && !e.target.classList.contains('loaded')) {
         let el = e.target;
 
-        if (el.dataset.src && el.nodeName.toLowerCase() === 'img') {
+        if (el.dataset.src && (el.nodeName.toLowerCase() === 'img')) {
           el.setAttribute('src', el.dataset.src);
         } else {
-          el.style.backgroundImage = el.dataset.src;
+          el.style.backgroundImage = "url("+el.dataset.src+")";
         }
 
         e.target.classList.add('loaded');
@@ -156,7 +156,6 @@ export default function Lazyload() {
     observer.observe(img);
   });
 }
-
 ```
 
 ### IMPORTING SVG SPRITE
