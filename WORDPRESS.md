@@ -1,7 +1,23 @@
-### PLUGIN
+### WORDPRESS | PHP
+
+### PLUGINS
+
 ```sh
 * Category Order and Taxonomy Terms Order Plugin to Wordpress
 -order category
+
+* WP SUPER CACHE
+-for gzip > advanced > check compress
+
+* CPT UI
+-Wordpress plugin for creating post types
+```
+
+### DEFINE OPTION URLS
+
+```sh
+define( 'WP_HOME', 'http://localhost' );
+define( 'WP_SITEURL', 'http://localhost' );
 ```
 
 ### GLOBAL $post

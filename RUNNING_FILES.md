@@ -48,6 +48,16 @@ USE `wordpress`;
 php -S localhost:3000
 ```
 
+### KILL RUNNING PORT
+```sh
+Through http-server
+lsof -i :{port} - if you want to see all processes running on a specific port
+
+kill -9 {pid} - kill running port
+
+sudo apachectl stop - stop apache
+```
+
 ### DOCKER
 
 ```sh
@@ -63,22 +73,22 @@ docker container rm cc3f2ff51cab cd20b396a061 - remove containers
 `docker system prune -a --volumes` - clean everything
 ```
 
-### ACCESSING DOCKER CONTAINER
+### ACCESSING DOCKER CONTAINERS
 
 ```sh
-From test server without `create database`
+ACCESSING DOCKER CONTAINERS
+
+From test server without create database
 docker ps
 docker exec -it 798a0e17ffe2 bash
 cd d
 cd docker-entrypoint-initdb.d/
 mysql -uroot -ppassword
-Exit
+
+drop database wordpress; // drop if previous local db
+create database wordpress;
+exit;
+
 mysql -uroot (USER) -ppassword (PASS) wordpress (DB_NAME) < seika-kindergarten.sql (from test server)
-
-either
-
-mysql -uroot -ppassword
-mysql -uroot -ppassword wordpress < wordpress.sql
-
-create database
+mysql -uroot -ppassword wordpress < wordpress.sql // create new db
 ```

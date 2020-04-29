@@ -21,6 +21,32 @@ Svg <%= svgSprite('/assets/svg/sprite.svg', '#sprite-sample-a') %>
 wrap.style.top = `${wrap.getBoundingClientRect().top}px`;
 ```
 
+### OBJECT FIT ON IE
+```sh
+const objectFitPolyfill = function() {
+
+  //  if ('objectFit' in document.documentElement.style === false) {
+      Array.prototype.forEach.call(document.querySelectorAll('.js-product-image'), function (image) {
+        const div = document.createElement("DIV");
+        div.classList.add('product-image-polyfill');
+        image.parentNode.appendChild(div);
+        image.classList.add('is-hide');
+        const imageProp = 'url("' + image.src + '") no-repeat center /' + window.getComputedStyle(image, null).getPropertyValue("object-fit");
+
+        setTimeout(function() {
+          image.parentNode.querySelector('.product-image-polyfill').style.background = imageProp;
+          image.parentNode.querySelector('.product-image-polyfill').style.width = '100%';
+          image.parentNode.querySelector('.product-image-polyfill').style.height = (image.height/2)+'px';
+        }, 100);
+      });
+  //  }
+
+  }
+
+  objectFitPolyfill();
+}
+```
+
 ### FOR SITE IMPROVEMENT AND SPEED
 
 ```sh
@@ -116,6 +142,8 @@ export default function Lazyload() {
     observer.observe(img);
   });
 }
+
+for images src, create pixel image
 ```
 
 ### IMPORTING SVG SPRITE
