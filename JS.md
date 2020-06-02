@@ -1,5 +1,6 @@
 # JAVASCRIPT
 
+test
 <!--[![N|Solid](https://cldup.com/dTxpPi9lDf.thumb.png)](https://nodesource.com/products/nsolid)-->
 
 <!--[![Build Status](https://travis-ci.org/joemccann/dillinger.svg?branch=master)](https://travis-ci.org/joemccann/dillinger)-->
@@ -92,6 +93,124 @@ Suggestion
 <script async src=""></script>
 
 7. Avoid to load Yugothic
+```
+
+### SWITCHING TABS
+```sh
+function _tabs() {
+  const bindAll = function() {
+    const menuElements = document.querySelectorAll('.js-tab');
+    menuElements.forEach(function(i) {
+      i.addEventListener('click', change, false);
+    });
+  }
+
+  const clear = function() {
+    var menuElements = document.querySelectorAll('.js-tab');
+    menuElements.forEach(function(i) {
+      i.classList.remove('is-active');
+      const id = i.getAttribute('data-tab');
+      document.getElementById(id).classList.remove('is-active');
+      localStorage.removeItem('currentTab');
+    });
+  }
+
+  const change = function(e) {
+    e.preventDefault();
+    clear();
+    e.target.classList.add('is-active');
+    const id = e.currentTarget.getAttribute('data-tab');
+    localStorage.setItem("currentTab", id);
+    document.getElementById(id).classList.add('is-active');
+  }
+
+  let currentTabSelected = localStorage.getItem('currentTab');
+  if(currentTabSelected !== null) {
+    clear();
+    document.getElementById(currentTabSelected).classList.add('is-active');
+    document.querySelector('.js-tab[data-tab='+currentTabSelected+']').classList.add('is-active');
+  } else {
+    document.getElementById('content-new').classList.add('is-active');
+    document.querySelector('.js-tab[data-tab=content-new]').classList.add('is-active');
+  }
+
+  bindAll();
+}
+```
+
+### IPAD SCALE
+```sh
+function _iPadView() {
+const ua = navigator.userAgent
+const sp = (ua.indexOf('iPhone') > 0 || ua.indexOf('Android') > 0 && ua.indexOf('Mobile') > 0);
+const tab = (ua.indexOf('iPad') > 0 || (!sp && ua.indexOf('Android') > 0));
+const isIOS = /iPad/.test(navigator.platform) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+const checkVersion = /Version\/13/;
+let ipadScale = window.screen.width / 1100;
+
+if(isIOS && checkVersion.test(navigator.userAgent) || tab) {
+  document.querySelector('meta[name="viewport"]').setAttribute('content', 'width=device-width,initial-scale='+ipadScale+',maximum-scale='+ipadScale+',user-scalable=0');
+}
+}
+```
+
+### DEVICE HACK
+```sh
+function _deviceCheck() {
+const $body = document.querySelector('html'),
+      userAgent = navigator.userAgent;
+let classBrowser = null,
+    classOS = null;
+
+const getBrowser = function() {
+  let browser = null;
+
+  if ((navigator.userAgent.indexOf("Opera") || navigator.userAgent.indexOf('OPR')) !== -1) {
+    browser = 'is-opera';
+  } else if (navigator.userAgent.indexOf("Edge") >= 0) {
+    browser = 'is-edge';
+  } else if (navigator.userAgent.indexOf("Chrome") !== -1) {
+    browser = 'is-chrome';
+  } else if (navigator.userAgent.indexOf("Safari") !== -1) {
+    browser = 'is-safari';
+  } else if (navigator.userAgent.indexOf("Firefox") !== -1) {
+    browser = 'is-firefox';
+  } else if ((navigator.userAgent.indexOf("MSIE") !== -1) || (!!document.documentMode === true)) {
+    browser = 'is-ie';
+  }
+
+  return browser;
+}
+```
+
+### BROWSER HACK
+```sh
+const getOS = function() {
+  const platform = window.navigator.platform,
+        macosPlatforms = ['Macintosh', 'MacIntel', 'MacPPC', 'Mac68K'],
+        windowsPlatforms = ['Win32', 'Win64', 'Windows', 'WinCE'],
+        iosPlatforms = ['iPhone', 'iPad', 'iPod'];
+  let os = null;
+
+  if (macosPlatforms.indexOf(platform) !== -1) {
+    os = 'is-mac';
+  } else if (iosPlatforms.indexOf(platform) !== -1) {
+    os = 'is-ios';
+  } else if (windowsPlatforms.indexOf(platform) !== -1) {
+    os = 'is-windows';
+  } else if (/Android/.test(userAgent)) {
+    os = 'is-android';
+  } else if (!os && /Linux/.test(platform)) {
+    os = 'is-linux';
+  }
+
+  return os;
+}
+
+classBrowser = getBrowser();
+classOS = getOS();
+$body.classList.add(classBrowser, classOS);
+}
 ```
 
 ### COUNTING FOREACH and starts at a specific number
