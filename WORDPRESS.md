@@ -33,6 +33,69 @@ setup_postdata( $post );
 <?php wp_reset_postdata(); ?>
 ```
 
+### Date Filter in Wordpress
+```sh
+function get_news_years() {
+    $args = array(
+        'post_type' => NEWS_POST_TYPE,
+        'order' => 'DESC',
+        'post_status' => 'publish',
+        'posts_per_page' => -1,
+    );
+
+    $news_query = new WP_Query( $args );
+
+    foreach( $news_query->posts as $news_year ) {
+        $post_years[] = date( 'Y', strtotime( $news_year->post_date ));
+    }
+
+    return array_unique( $post_years );
+}
+```
+
+### Creating one or more options inside functions
+```sh
+// acf optionページの設定
+if( function_exists('acf_add_options_page') ) {
+
+    acf_add_options_page(array(
+        'page_title' => 'Common Footer',
+        'menu_title'=> 'Common Footer',
+        'menu_slug' => 'common_footer',
+        //'capability'=> 'edit_posts',
+        'redirect'=> false
+    ));
+
+    acf_add_options_page(array(
+        'page_title' => 'Common Footer',
+        'menu_title'=> 'Common Footer',
+        'menu_slug' => 'common_footer',
+        //'capability'=> 'edit_posts',
+        'redirect'=> false
+    ));
+
+}
+
+Creating function and field is in options, add `options` inside `get_field`,
+Calling direct field that not inside the options `get_field( 'mv_background' );`
+
+function get_footer_details() {
+    $footer_logo = get_field( 'footer_logo', 'options' );
+    $footer_contact_address = get_field( 'footer_contact_address', 'options' );
+    $footer_telephone_number = get_field( 'footer_telephone_number', 'options' );
+    $footer_fax_number = get_field( 'footer_fax_number', 'options' );
+    $footer_banners = get_field( 'footer_banners', 'options' );
+    $footer_args = array(
+    'footer_logo' => $footer_logo,
+    'footer_contact_address' => $footer_contact_address,
+    'footer_telephone_number' => $footer_telephone_number,
+    'footer_fax_number' => $footer_fax_number,
+    'footer_banners' => $footer_banners,
+    );
+    return $footer_args;
+}
+```
+
 ### Calling parent page title
 
 ```sh

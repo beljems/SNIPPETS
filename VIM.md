@@ -9,12 +9,10 @@
 
 ### NERDTREE
 ```sh
-Open v
 N + back slash - opening nerdtree
 :NERDTree
 
 Ctrl + b + fn + arrow up - make scrollable in terminal
-s - for new tab column
 ```
 
 ### MOVING CURSOR
@@ -34,6 +32,10 @@ Ctrl + b + h  | j | k | l - arrow keys
 ```sh
 s - horizontal split
 i - vertical split
+shift + r - refresh / reload nerdtree
+m - type a after to add new file
+m - type a then write the filename then append '/' to create directory
+m - type m to rename the file
 ```
 
 ### TMUX
