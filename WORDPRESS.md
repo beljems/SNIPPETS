@@ -11,6 +11,9 @@
 
 * CPT UI
 -Wordpress plugin for creating post types
+
+* Addquicktags
+-add quick tags on page editor
 ```
 
 ### DEFINE OPTION URLS
@@ -31,6 +34,50 @@ $post = $article_item; // Assign your post details to $post (& not any other var
 setup_postdata( $post );
 
 <?php wp_reset_postdata(); ?>
+```
+
+### Get Ordinal and days in JP
+```sh
+<?php
+
+function ordinal($number) {
+    $ends = array('th','st','nd','rd','th','th','th','th','th','th');
+    if ((($number % 31) >= 11) && (($number % 31) <= 13)) {
+        return 'th';
+    } else {
+        return $ends[$number % 10];
+    }
+}
+
+function daysInJP($event) {
+    $sched_day = $event->format('D');
+
+    switch($sched_day) {
+      case 'Mon':
+        echo '（月）';
+        break;
+      case 'Tue':
+        echo '（火）';
+        break;
+      case 'Wed':
+        echo '（水）';
+        break;
+      case 'Thu':
+        echo '（木）';
+        break;
+      case 'Fri':
+        echo '（金）';
+        break;
+      case 'Sat':
+        echo '（土）';
+        break;
+      case 'Sun':
+        echo '（日）';
+        break;
+      default:
+        echo '';
+    }
+}
 ```
 
 ### Date Filter in Wordpress
