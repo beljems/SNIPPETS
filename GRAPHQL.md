@@ -44,7 +44,7 @@ myField: [] // valid
 myField: ['a', 'b'] // valid
 myField: ['a', null, 'b'] // valid
 ```
-# Write your query or mutation here
+### Write your query or mutation here
 ```sh
 Basic query
  {
