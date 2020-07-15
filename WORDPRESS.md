@@ -17,14 +17,18 @@
 ```
 
 ### DEFINE OPTION URLS
-
 ```sh
 define( 'WP_HOME', 'http://localhost' );
 define( 'WP_SITEURL', 'http://localhost' );
 ```
 
-### GLOBAL $post
+### REDIRECTING HTTP TO HTTPS
+```sh
+RewriteEngine On
+RewriteCond %{SERVER_PORT} 80
+RewriteRule ^(.*)$ https://sales-innovation.co.jp/$1 [R,L]```
 
+### GLOBAL $post
 ```sh
 Please use setup_postdata() and wp_reset_postdata() when you use
 global $post so it would not cause conflict on the existing global $post.
@@ -34,50 +38,6 @@ $post = $article_item; // Assign your post details to $post (& not any other var
 setup_postdata( $post );
 
 <?php wp_reset_postdata(); ?>
-```
-
-### Get Ordinal and days in JP
-```sh
-<?php
-
-function ordinal($number) {
-    $ends = array('th','st','nd','rd','th','th','th','th','th','th');
-    if ((($number % 31) >= 11) && (($number % 31) <= 13)) {
-        return 'th';
-    } else {
-        return $ends[$number % 10];
-    }
-}
-
-function daysInJP($event) {
-    $sched_day = $event->format('D');
-
-    switch($sched_day) {
-      case 'Mon':
-        echo '（月）';
-        break;
-      case 'Tue':
-        echo '（火）';
-        break;
-      case 'Wed':
-        echo '（水）';
-        break;
-      case 'Thu':
-        echo '（木）';
-        break;
-      case 'Fri':
-        echo '（金）';
-        break;
-      case 'Sat':
-        echo '（土）';
-        break;
-      case 'Sun':
-        echo '（日）';
-        break;
-      default:
-        echo '';
-    }
-}
 ```
 
 ### Date Filter in Wordpress
@@ -144,7 +104,6 @@ function get_footer_details() {
 ```
 
 ### Calling parent page title
-
 ```sh
 <?php
   global $post;
@@ -157,7 +116,6 @@ function get_footer_details() {
 ```
 
 ### REMOVING ADMIN ELEMENTS USING PHP HOOK
-
 ```sh
 if (!has_action('admin_footer', 'alert_category')) {
     //	add_action( 'admin_footer' , 'lig_wp_alert_unselected_category' );
@@ -181,7 +139,6 @@ function wp_acf_hide_remove_option()
 ```
 
 ### RELATED POST on SINGLE
-
 ```sh
 function get_related_posts($post_id) {
   $args = array(
@@ -244,4 +201,21 @@ $tagName = $get_term_by_tag->name;
 ```sh
 $get_term_bg_category = get_the_terms($post->ID, BLOG_CAT);
 $categoryName = $get_term_bg_category->name;
+```
+
+### CHANGE FEATURED IMAGE LABEL
+```sh
+Add this inside “Labels” array
+
+// Overrides the “Featured Image” label
+'featured_image'        => __( 'Book Cover Image', 'textdomain' ),
+
+// Overrides the “Set featured image” label
+'set_featured_image'    => __( 'Set cover image', 'textdomain' ),
+
+// Overrides the “Remove featured image” label
+'remove_featured_image' => _x( 'Remove cover image', 'textdomain' ),
+
+// Overrides the “Use as featured image” label
+'use_featured_image'    => _x( 'Use as cover image', 'textdomain' ),
 ```

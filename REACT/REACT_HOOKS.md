@@ -1,10 +1,7 @@
-### REACT HOOKS
+# REACT HOOKS
 
+### Example
 ```sh
-HTML
-<div id="app"></div>
-
-JS
 class App extends React.Component {
   state = {
     test: 1,
@@ -36,9 +33,11 @@ class App extends React.Component {
       return <div>Done</div>;
     }
   }
-}
+}```
 
-// class component
+### Class Component
+
+```sh
 class App2 extends React.Component {
   // component is added to DOM
   componentDidMount() {
@@ -58,9 +57,10 @@ class App2 extends React.Component {
   render() {
     return <div>Test 2</div>;
   }
-}
+}```
 
-// functional component
+### Functional Component
+```sh
 function App3(props) {
   // componentDidMount
   React.useEffect(() => {

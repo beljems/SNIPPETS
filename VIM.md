@@ -9,10 +9,20 @@
 
 ### NERDTREE
 ```sh
+Open v
 N + back slash - opening nerdtree
 :NERDTree
+s - horizontal split
+i - vertical split
+
+R - refresh / reload nerdtree
+I  - to toggle hidden files
+m - type a after to add new file
+m - type a then write the filename then append '/' to create directory
+m - type m to rename the file
 
 Ctrl + b + fn + arrow up - make scrollable in terminal
+s - for new tab column
 ```
 
 ### MOVING CURSOR
@@ -28,18 +38,7 @@ l - right
 Ctrl + b + h  | j | k | l - arrow keys
 ```
 
-### Nerdtree
-```sh
-s - horizontal split
-i - vertical split
-shift + r - refresh / reload nerdtree
-m - type a after to add new file
-m - type a then write the filename then append '/' to create directory
-m - type m to rename the file
-```
-
 ### TMUX
-
 ```sh
 Create split tab
 Ctrl + b + %
@@ -191,6 +190,11 @@ Some useful examples are:
 ```sh
 :w !pbcopy - copy clipboard from outside
 cmd + v - paste
+```
+
+### WRAP LINES
+```sh
+:set wrap linebreak
 ```
 
 ### YANK AND PUT INSIDE VIM

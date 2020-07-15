@@ -1,16 +1,18 @@
-### ASYNC PROGRAMMING
+# ASYNC PROGRAMMING
 
 ```sh
 LOUPE JS PLAYGROUND
-http://latentflip.com/loupe/
+[http://latentflip.com/loupe/](http://latentflip.com/loupe/)
 To check running functions hierarchy
 
+```sh
 Synchonous - one at a time
-Asynchronous - at the same time
+Asynchronous - at the same time```
 
-ASYNC PROGRAMMING
-http://latentflip.com/loupe/
+## ASYNC PROGRAMMING
+[http://latentflip.com/loupe/](http://latentflip.com/loupe/)
 
+```sh
 console.log('start'); // first call
 
 setTimeout(() => {
@@ -19,11 +21,10 @@ setTimeout(() => {
 
 // last call
 
-console.log('end'); // second call
+console.log('end'); // second call```
 
-Promise is async method
-
-let promise = new Promise((resolve, reject) => {
+### Promise is async method
+```let promise = new Promise((resolve, reject) => {
   let error = false;
   if(error) {
     reject('Error');
@@ -37,10 +38,10 @@ promise.then((res) => {
   console.log('done');
 }, (err) => {
   console.log(err);
-})
+})```
 
-Promise with $.ajax
-
+### Promise with $.ajax
+```sh
 let promise = $.ajax('https://');
 
 promise.then((res) => {
@@ -48,11 +49,10 @@ promise.then((res) => {
   console.log('done');
 }, (err) => {
   console.log(err);
-})
+})```
 
-
-ES8/EcmaScript 2017
-
+## ES8/EcmaScript 2017
+```sh
 Async - Promise
 Await - .then
 
@@ -62,10 +62,10 @@ console.log('start'); // first call
 
 let res = await // second call
 
-console.log('end'); // third call
+console.log('end'); // third call```
 
-+++++++++
-// async
+### ASYNC
+```sh
 async function main() {
   console.log('start');
 
@@ -73,9 +73,10 @@ async function main() {
   let result = await getPromise();
   console.log(result);
   console.log('end');
-}
+}```
 
-// .then
+### PROMISE THEN
+```sh
 async function main() {
   console.log('start');
 
@@ -99,11 +100,11 @@ async function getPromise() {
     }
   })
 
-}
+}```
 
-
-AXIOS - visit axios site
-const axios = require('axios');
+## AXIOS
+- visit axios site
+```sh const axios = require('axios');
 
 axios.get('https://reqres.in/api/users')
 .then((res) => {
@@ -112,9 +113,10 @@ axios.get('https://reqres.in/api/users')
 });
 
 ASYNC/Await in Axios
-import Axios from 'axios';
+import Axios from 'axios';```
 
-//get
+### GET
+```sh
 async function main() {
   console.log('start');
   let result = await axios.get('https://reqres.in/api/users', {
@@ -124,9 +126,10 @@ async function main() {
   console.log('end');
 })
 
-main();
+main();```
 
-//post
+### POST
+```sh
 async function main() {
   console.log('start');
   let result = await axios.post('https://reqres.in/api/users', {
@@ -136,9 +139,10 @@ async function main() {
   console.log('end');
 })
 
-main();
+main();```
 
-//https method
+### HTTPS METHOD
+```sh
 async function main() {
   console.log('start');
   let result = await axios({
@@ -151,9 +155,10 @@ async function main() {
   console.log(result.data);
   console.log('end');
 })
-main();
+main();```
 
-//patch
+### PATCH
+```sh
 async function main() {
   console.log('start');
   let result = await axios({
@@ -169,14 +174,13 @@ async function main() {
   console.log(result.data);
   console.log('end');
 })
-main();
+main();```
 
-
-
-REST - visit rest api
-below are basics
+## REST
+visit rest api, below are basics
 
 http methods
+```sh
 get - /users - list all users
     - /users/id - get resource with id
 post

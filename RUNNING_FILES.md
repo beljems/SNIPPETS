@@ -1,17 +1,14 @@
 ### NEW FRONTPLATE
-
 ```sh
-Use
 npx lig-interactive-generator
 ```
 
 ### SET-UP LOCAL DEV
-
 No frp yet
 
 ```sh
 1. Search and install homebrew
-/usr/bin/ruby -e "$(curl -fsSL [https://raw.githubusercontent.com/Homebrew/install/master/install](https://raw.githubusercontent.com/Homebrew/install/master/install))"
+/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install
 2. brew install node
 3. npm i frontplate-cli -g
 4. ssh-keygen -t rsa (for git generate ssh key ) just enter
@@ -21,7 +18,8 @@ No frp yet
 8. Ssh key then add the key you created
 9. The you can now use the git clone not the https (more faster)
 ```
-Clone first the frp
+
+### Clone FRP first
 ```sh
 For Wordpress frontplate / frontplate
 1. On terminal, frp create wp-belle -g liginc/wordpress-frontplate
@@ -32,9 +30,9 @@ For Wordpress frontplate / frontplate
 ```
 
 ### DUMPING LOCAL SQL
-
 ```sh
 bash scripts/mysqldump.sh
+npm run sqldump
 ```
 
 Remove this part before importing to server
@@ -59,7 +57,6 @@ sudo apachectl stop - stop apache
 ```
 
 ### DOCKER
-
 ```sh
 docker stop $(docker ps -aq) - stop running containers
 docker rm -f $(docker ps -aq) - remove containers
@@ -74,7 +71,6 @@ docker container rm cc3f2ff51cab cd20b396a061 - remove containers
 ```
 
 ### ACCESSING DOCKER CONTAINERS
-
 ```sh
 ACCESSING DOCKER CONTAINERS
 
