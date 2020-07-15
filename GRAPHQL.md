@@ -27,7 +27,7 @@ schema {
 * [Episode!]! represents an array of Episode objects. Since it is also non-nullable, you can always expect an array (with zero or more items) when you query the appearsIn field. And since Episode! is also non-nullable, you can always expect every item of the array to be an Episode object.
 ```
 
-### NON-NULL in son
+### NON-NULL in json
 ```sh
 myField: null // valid
 myField: [] // valid
