@@ -1,6 +1,11 @@
 # Graphql
-[https://graphql.org/learn/schema/](https://graphql.org/learn/schema/)
+[https://graphql.org/](https://graphql.org/)
+A query language for your API
+
+GraphQL is a query language for APIs and a runtime for fulfilling those queries with your existing data. GraphQL provides a complete and understandable description of the data in your API, gives clients the power to ask for exactly what they need and nothing more, makes it easier to evolve APIs over time, and enables powerful developer tools.
+
 ### SCHEMA TWO TYPES
+[https://graphql.org/learn/schema/](https://graphql.org/learn/schema/)
 
 ```sh
 schema {
@@ -61,8 +66,8 @@ Basic query
 }
 ```
 
-[https://hasura.io/docs/1.0/graphql/manual/queries/sorting.html](https://hasura.io/docs/1.0/graphql/manual/queries/sorting.html)
 ### OrderBy
+[https://hasura.io/docs/1.0/graphql/manual/queries/sorting.html](https://hasura.io/docs/1.0/graphql/manual/queries/sorting.html)
 In example below, orderBy should be an array type and inside with an array of objects
 ```sh
 query getApplicantsDetail {
