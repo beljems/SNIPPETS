@@ -49,7 +49,7 @@ myField: [] // valid
 myField: ['a', 'b'] // valid
 myField: ['a', null, 'b'] // valid
 ```
-### Write your query or mutation here
+## QUERY
 ```sh
 Basic query
  {
@@ -147,3 +147,106 @@ query searchApplicants($search: String) { search // argument, String scalar data
   }
 }
 ```
+
+## MUTATION
+
+###Add Post
+```sh
+mutation addPosts($post: PostInput) {
+  addPost(post: $post) {
+    id
+    title
+    content
+  }
+}```
+
+### Register for account
+```sh
+mutation register {
+  register(email: "belle@gmail.com", password: "botyok143")
+}```
+
+### Authentication
+```sh
+mutation authenticate {
+  authenticate(email: "belle@gmail.com", password: "botyok143")
+}```
+
+### Get post with id 12
+```sh
+query getPost {
+  post(id: 12) {
+    id
+    title
+    content
+    comments {
+      content
+    }
+  }
+}```
+
+### Add Comment
+```sh
+mutation addComment {
+  addComment(postId: 12, content: "Belle") {
+    id
+    postId
+  }
+}```
+
+### Add Address
+```sh
+mutation address {
+  upsertAddress(addressDetails: {
+    address1: "Mandaue, Cebu",
+    address2: "Lahug, Cebu City",
+    city: "Cebu City",
+    state: "Cebu",
+    postalCode: "0000",
+    country: "Philippines"
+  }) {
+    id
+    address1
+    address2
+    city
+    state
+    postalCode
+    country
+  }
+}```
+
+### Update Address with id 374
+```sh
+mutation address {
+  upsertAddress(id: 374, addressDetails: {
+    address1: "Manila",
+    address2: "Lahug, Cebu City",
+    city: "Cebu City",
+    state: "Cebu",
+    postalCode: "0000",
+    country: "Philippines"
+  }) {
+    id
+    address1
+    address2
+    city
+    state
+    postalCode
+    country
+  }
+}```
+
+### To query variables
+```sh
+{
+  "post":{
+    	"title": "Hello!",
+      "content": "belle belle"
+  }
+}```
+
+### Authorization format
+```sh
+{
+  "Authorization": "1ye6v27w7j8"
+}```
